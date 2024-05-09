@@ -4,19 +4,14 @@ import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sommelio/models/user.dart';
+import 'package:sommelio/modules/services/authentication_service.dart';
 import 'package:sommelio/repository/repository.dart';
-import 'package:sommelio/screen/home_page.dart';
+import 'package:sommelio/modules/home/home_page.dart';
 class SommelioProvider {
 
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: 'https://120.0.0.1:localhost:44335',
-      connectTimeout: const Duration(seconds: 6000),
-      receiveTimeout: const Duration(seconds: 6000),
-      responseType: ResponseType.json,
-      contentType: "application/json"
-    ),
-  );
+  //IMPORTER LE DIO DE MON AUTHENTICATION SERVICE
+  final AuthenticationService _authenticationService = AuthenticationService();
+  
 
 
 
@@ -36,7 +31,7 @@ class SommelioProvider {
   //   }
   // }
 
-  Future<void> login(String username, String password, context) async {
+  Future<User> login(String username, String password) async {
     var url = Uri.https('localhost:44335', '/User/Login');
     try {
       var response = await http.post(
@@ -48,36 +43,41 @@ class SommelioProvider {
       if (response.statusCode == 200) {
         var jsonResponse = convert.jsonDecode(response.body);
         print('Response: $jsonResponse');
-        User user = User.fromJson(jsonResponse['user']);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomePage(user: user)));
+        return User.fromJson(jsonResponse);
+        
       } else {
-        print('Request failed with status: ${response.statusCode}.');
-        showModalBottomSheet(
-          context: context,
-          builder: (BuildContext context) {
-            return Container(
-              padding: EdgeInsets.all(16),
-              child: const Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Mot de passe ou nom d\'utilisateur incorrects. Veuillez réessayer.',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
+        return Future.error('Request failed with status: ${response.statusCode}.');
+        
       }
     } catch (e) {
-      print('Request failed with error: $e.');
+      return Future.error(e.toString());
       // Optionally, handle specific error codes here.
     }
   }
+
+
+  // Future<bool> login(String username, String password) async {
+  //   try {
+  //     final response = await http.post(
+  //       '/User/Login',
+  //       data: {
+  //         'email': username,
+  //         'password': password,
+  //       },
+  //     );
+  //     if (response.statusCode == 200) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   } on DioError catch (e) {
+  //     if (e.response?.statusCode == 401) {
+  //       return Future.error('Invalid credentials');
+  //     } else {
+  //       return Future.error('Internal server error');
+  //     }
+  //   } catch (e) {
+  //     return Future.error(e.toString());
+  //   }
+  // }
 }

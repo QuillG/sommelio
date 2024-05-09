@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sommelio/routes/app_routes.dart';
 
 class OpenPage extends StatelessWidget {
   const OpenPage({super.key});
@@ -15,7 +16,7 @@ class OpenPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushNamed(context, AppRoutes.login);
               },
               child: const Text('Login'),
             ),

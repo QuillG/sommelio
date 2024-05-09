@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sommelio/screen/home_page.dart';
-import 'package:sommelio/screen/login_page.dart';
-import 'package:sommelio/screen/open_page.dart';
+import 'package:sommelio/models/user.dart';
+import 'package:sommelio/modules/home/home_page.dart';
+import 'package:sommelio/modules/login/login_page.dart';
+import 'package:sommelio/modules/openingPage/open_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Navigation',
 
       initialRoute: '/',
-      routes: {
-        
+      routes: {    
         '/': (context) => const OpenPage(),
-        // '/login': (context) => LoginPage(controller:  LoginPageController()),
-        // '/home': (context) => HomePage(user: user),
+        '/login': (context) => LoginPage(),
       },
     );
   }

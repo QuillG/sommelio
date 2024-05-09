@@ -1,35 +1,37 @@
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
-import 'package:sommelio/controller/login_page_controller.dart';
+import 'package:sommelio/modules/login/login_page_controller.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/repository/repository.dart';
-import 'package:sommelio/screen/home_page.dart';
+import 'package:sommelio/modules/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  final LoginPageController controller;
-  bool isVisible = false;
-  // User? user;
+  late LoginPageController controller = LoginPageController();
 
-  LoginPage({required this.controller, super.key});
+  LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Add state variables for username and password (optional)
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           const SizedBox(height: 50),
-          const Center(child: Text('Sommelio (introduire logo ici)')),
+          //introduire logo ici
+          Center(
+            child: Image.asset(
+              'assets/logo/logotypo.png',
+              width: MediaQuery.of(context).size.width * 0.8,
+            ),
+          ),
           const Spacer(flex: 1),
+          Text('À LA'),
           Image.asset(
             'assets/images/bottle-and-wine-glass.jpg',
             width: MediaQuery.of(context).size.width * 0.8,
@@ -76,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         TextField(
-                          controller: usernameController,
+                          controller: widget.controller.usernameController,
                           decoration: const InputDecoration(
                             labelText: 'Username',
                           ),
@@ -84,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 12),
                         TextField(
-                          controller: passwordController,
+                          controller: widget.controller.passwordController,
                           decoration: const InputDecoration(
                             labelText: 'Password',
                           ),
@@ -92,9 +94,46 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 12),
                         ElevatedButton(
-                          onPressed: () {
-                            widget.controller.login(usernameController.text,
-                                passwordController.text, context);
+                          onPressed: () async {
+                            if (widget.controller.usernameController.text
+                                    .isNotEmpty &&
+                                widget.controller.passwordController.text
+                                    .isNotEmpty) {
+                              User isUserAuthenticated = await widget.controller
+                                  .login(
+                                      widget.controller.usernameController.text,
+                                      widget
+                                          .controller.passwordController.text);
+                              print(isUserAuthenticated);
+                              if (mounted) {
+                                if (isUserAuthenticated != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomePage(
+                                        user: isUserAuthenticated,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content:
+                                          Text('Invalid username or password'),
+                                    ),
+                                  );
+                                }
+                              }
+                            } else {
+                              if (mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        'Please enter username and password'),
+                                  ),
+                                );
+                              }
+                            }
                           },
                           child: const Text('Login'),
                         ),

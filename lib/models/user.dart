@@ -13,10 +13,10 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      name: json['name'],
-      surname: json['surname'],
-      email: json['email'],
-      profilePictureUrl: json['profilePictureUrl'],
+      name: json['user']['name'],
+      surname: json['user']['surname'],
+      email: json['user']['email'],
+      profilePictureUrl: json['user']['profilePictureUrl'],
     );
   }
 
@@ -31,7 +31,7 @@ class User {
 
   bool SaveUser() {
     // Save user to database
-    
+
     return true;
   }
 }
