@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/routes/app_routes.dart';
 
 class OpenPage extends StatelessWidget {
@@ -18,7 +19,11 @@ class OpenPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.login);
               },
-              child: const Text('Login'),
+              child: const Text('Login',
+              style: TextStyle(
+                fontFamily: AppFonts.avenirRegular
+              ),
+              ),
             ),
           ),
           const Spacer(flex: 1),

@@ -1,13 +1,13 @@
 class User {
   String name;
-  String email;
   String surname;
+  String email;
   String? profilePictureUrl;
 
   User({
     required this.name,
-    required this.email,
     required this.surname,
+    required this.email,
     this.profilePictureUrl,
   });
 

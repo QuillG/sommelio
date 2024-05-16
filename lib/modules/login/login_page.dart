@@ -1,15 +1,13 @@
-import 'dart:convert' as convert;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/widgets.dart';
+import 'package:sommelio/config/app-colors.dart';
+import 'package:sommelio/config/app_fonts.dart';
+import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
-import 'package:sommelio/models/user.dart';
-import 'package:sommelio/repository/repository.dart';
-import 'package:sommelio/modules/home/home_page.dart';
+import 'package:sommelio/widget/connexion_BottomSheet.dart';
 
 class LoginPage extends StatefulWidget {
-  late LoginPageController controller = LoginPageController();
-
   LoginPage({super.key});
 
   @override
@@ -17,133 +15,132 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late LoginPageController controller = LoginPageController();
+  @override
+  void initState() {
+    super.initState();
+    checkUser();
+  }
+
+  void checkUser() async {
+    // User? user = await controller.getUser();
+    // if (user != null) {
+    //   // Si l'utilisateur est déjà connecté, naviguez vers la page d'accueil
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => HomePage(
+    //               user: user,
+    //             )),
+    //   );
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           const SizedBox(height: 50),
           //introduire logo ici
           Center(
             child: Image.asset(
-              'assets/logo/logotypo.png',
+              AppIcons.sommelioIcon,
               width: MediaQuery.of(context).size.width * 0.8,
             ),
           ),
           const Spacer(flex: 1),
-          Text('À LA'),
+          const Text('À LA',
+              style: TextStyle(
+                fontFamily: AppFonts.avenirLight,
+                fontSize: 45,
+              )),
+          const Text('TIENNE !',
+              style: TextStyle(
+                fontFamily: AppFonts.heavitas,
+                fontSize: 45,
+              )),
+          const Spacer(flex: 1),
           Image.asset(
-            'assets/images/bottle-and-wine-glass.jpg',
-            width: MediaQuery.of(context).size.width * 0.8,
+            AppIcons.handGlasses,
+            width: MediaQuery.of(context).size.width * 0.4,
           ),
           const Spacer(flex: 1),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.yellow,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled:
+                      true, // Pour la prise en compte du clavier
+                  builder: (BuildContext context) {
+                    return CustomLoginWidget(controller: controller);
+                  },
+                );
               },
-              child: const Text('Google Sign-In'),
+              child: const Text(
+                'Se connecter avec un e-mail',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: AppFonts.avenirRegular,
+                  fontSize: 16,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.pink,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
-              child: const Text('Facebook Sign-In'),
+              child: const Text(
+                'Se connecter avec Google',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: AppFonts.avenirRegular,
+                  fontSize: 16,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
-              child: const Text('Apple Sign-In'),
+              child: const Text(
+                'Je m\'inscris',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: AppFonts.avenirRegular,
+                  fontSize: 16,
+                ),
+              ),
             ),
-          ),
-          const Spacer(flex: 1), // Takes up 1/3 of the available space
-          ElevatedButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextField(
-                          controller: widget.controller.usernameController,
-                          decoration: const InputDecoration(
-                            labelText: 'Username',
-                          ),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(height: 12),
-                        TextField(
-                          controller: widget.controller.passwordController,
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                          ),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton(
-                          onPressed: () async {
-                            if (widget.controller.usernameController.text
-                                    .isNotEmpty &&
-                                widget.controller.passwordController.text
-                                    .isNotEmpty) {
-                              User isUserAuthenticated = await widget.controller
-                                  .login(
-                                      widget.controller.usernameController.text,
-                                      widget
-                                          .controller.passwordController.text);
-                              print(isUserAuthenticated);
-                              if (mounted) {
-                                if (isUserAuthenticated != null) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomePage(
-                                        user: isUserAuthenticated,
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content:
-                                          Text('Invalid username or password'),
-                                    ),
-                                  );
-                                }
-                              }
-                            } else {
-                              if (mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'Please enter username and password'),
-                                  ),
-                                );
-                              }
-                            }
-                          },
-                          child: const Text('Login'),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-            child: const Text('Login'),
           ),
           const Spacer(flex: 1),
         ],

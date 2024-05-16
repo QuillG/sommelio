@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sommelio/config/app-colors.dart';
+import 'package:sommelio/config/app_icons.dart';
 
-class CustomHeader extends StatefulWidget {
-  const CustomHeader({Key? key}) : super(key: key);
+class CustomHeader extends AppBar {
 
   @override
   State<CustomHeader> createState() => _CustomHeaderState();
@@ -10,34 +11,33 @@ class CustomHeader extends StatefulWidget {
 class _CustomHeaderState extends State<CustomHeader> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      color: Colors.blue,
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Sommelio',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          ),
-          //regroupe les deux boutton dans un composant
-          Row(
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+        child: Container(
+          width: double.infinity,
+          color: AppColors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(
-                onPressed: null,
-                child: Icon(Icons.search),
+              Image.asset(
+                AppIcons.sommelioIcon,
+                width: MediaQuery.of(context).size.width * 0.35,
+                fit: BoxFit.fill,
               ),
-              ElevatedButton(
-                onPressed: null,
-                // Ajoutez une icone de qr code ici
-                child: Icon(Icons.qr_code),
-              ),
-            ])
-        ],
+              //regroupe les deux boutton dans un composant
+              const Row(children: [
+                IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.search, color: AppColors.black, size: 35.0)), // Change the color and size here
+                IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.qr_code, color: AppColors.black, size: 35.0)), // Change the color and size here
+              ])
+            ],
+          ),
+        ),
       ),
     );
   }
