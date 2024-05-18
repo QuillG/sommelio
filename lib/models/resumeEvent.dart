@@ -3,7 +3,7 @@ class ResumeEvent {
   final String description;
   final String date;
   final String location;
-  final String pictureUrl;
+  final String? pictureUrl;
   final String companyName;
 
   ResumeEvent(
@@ -11,7 +11,7 @@ class ResumeEvent {
       required this.description,
       required this.date,
       required this.location,
-      required this.pictureUrl,
+      this.pictureUrl,
       required this.companyName});
 
   factory ResumeEvent.fromJson(Map<String, dynamic> json) {

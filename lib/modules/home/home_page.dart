@@ -31,9 +31,13 @@ class _HomePageState extends State<HomePage> {
 
     return BasePage(
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding global à gauche et à droite
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20.0), // Ajout d'un espace avant le texte "Bonjour"
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,19 +64,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const Row(
-              children: [
-                Text(
-                  "Types de vins ",
-                  style: TextStyle(
-                    fontFamily: AppFonts.avenirHeavy,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(width: 6.0),
-                Icon(Icons.arrow_right_alt_outlined,
-                    color: Colors.black, size: 24.0),
-              ],
+            const SizedBox(height: 20.0), // Espacement après le texte d'accueil
+            const Text(
+              "Types de vins ",
+              style: TextStyle(
+                fontFamily: AppFonts.avenirHeavy,
+                fontSize: 20,
+              ),
             ),
             const SizedBox(height: 12.0),
             FutureBuilder<List<Btn>>(
@@ -100,19 +98,12 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             const SizedBox(height: 50.0),
-            const Row(
-              children: [
-                Text(
-                  "Accords Mets & Vins ",
-                  style: TextStyle(
-                    fontFamily: AppFonts.avenirHeavy,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(width: 6.0),
-                Icon(Icons.arrow_right_alt_outlined,
-                    color: Colors.black, size: 24.0),
-              ],
+            const Text(
+              "Accords Mets & Vins ",
+              style: TextStyle(
+                fontFamily: AppFonts.avenirHeavy,
+                fontSize: 20,
+              ),
             ),
             const SizedBox(height: 12.0),
             FutureBuilder<List<Btn>>(
@@ -140,17 +131,13 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             const SizedBox(height: 50.0),
-            const Row(
-              children: [
-                Text(
-                  'Événements du mois',
-                  style: TextStyle(
-                    fontFamily: AppFonts.avenirHeavy,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            const Text(
+              'Événements du mois',
+              style: TextStyle(
+                fontFamily: AppFonts.avenirHeavy,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 12.0),
             FutureBuilder<List<ResumeEventCase>>(

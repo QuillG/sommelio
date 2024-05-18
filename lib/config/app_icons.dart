@@ -9,6 +9,7 @@ class AppIcons {
   static const String veau = 'assets/other/NOIR/Veau.png';
   static const String agneau = 'assets/other/NOIR/Agneau.png';
   static const String porc = 'assets/other/NOIR/Porc.png';
+  static const String vegetarien = 'assets/other/NOIR/Végétarien.png';
   static const String charcuterie = 'assets/other/NOIR/Charcuterie.png';
   static const String sommelioIcon = 'assets/logo/SOMMELIOLogoBlack.png';
   static const String sommelioIconWhite = 'assets/logo/SOMMELIOLogoWhite.png';
@@ -18,6 +19,11 @@ class AppIcons {
   static const String bottomBarHeart = 'assets/navbarIcones/VIDE/Heart.png';
   static const String bottomBarProfile = 'assets/navbarIcones/VIDE/Profile.png';
   static const String bottomBarMap = 'assets/navbarIcones/VIDE/Maps.png';
+  static const String bottomBarHomeActive = 'assets/navbarIcones/PLEIN/Home.png';
+  static const String bottomBarHeartActive = 'assets/navbarIcones/PLEIN/Heart.png';
+  static const String bottomBarProfileActive = 'assets/navbarIcones/PLEIN/Profile.png';
+  static const String bottomBarMapActive = 'assets/navbarIcones/PLEIN/Maps.png';
+  static const String eventIcone = 'assets/other/eventWine.png';
   
 
 }

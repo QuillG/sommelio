@@ -1,44 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_icons.dart';
+import 'package:sommelio/widget/qr_code_bottomSheet.dart';
 
-class CustomHeader extends AppBar {
+class CustomHeader extends StatefulWidget implements PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + (kToolbarHeight / 2));
 
   @override
-  State<CustomHeader> createState() => _CustomHeaderState();
+  _CustomHeaderState createState() => _CustomHeaderState();
 }
 
 class _CustomHeaderState extends State<CustomHeader> {
+  bool isSearching = false;
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-        child: Container(
-          width: double.infinity,
-          color: AppColors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(
-                AppIcons.sommelioIcon,
-                width: MediaQuery.of(context).size.width * 0.35,
-                fit: BoxFit.fill,
-              ),
-              //regroupe les deux boutton dans un composant
-              const Row(children: [
-                IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.search, color: AppColors.black, size: 35.0)), // Change the color and size here
-                IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.qr_code, color: AppColors.black, size: 35.0)), // Change the color and size here
-              ])
-            ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AppBar(
+          automaticallyImplyLeading: false, // Remove the back arrow
+          backgroundColor: AppColors.white,
+          elevation: 0,
+          title: Image.asset(
+            AppIcons.sommelioIcon,
+            width: MediaQuery.of(context).size.width * 0.35,
+            fit: BoxFit.fill,
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  isSearching = !isSearching;
+                });
+              },
+              icon: Icon(
+                isSearching ? Icons.close : Icons.search,
+                color: AppColors.black,
+                size: 35.0,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                QrCodeBottomSheet.show(context, '1234567890');
+              },
+              icon: Icon(Icons.qr_code, color: AppColors.black, size: 35.0),
+            ),
+          ],
         ),
-      ),
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          height: isSearching ? 60.0 : 0.0,
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: isSearching
+              ? TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Rechercher un vin',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onSubmitted: (query) {
+                    setState(() {
+                      isSearching = false;
+                    });
+                    // Ajoutez la logique de recherche ici avec `query`
+                  },
+                )
+              : null,
+        ),
+      ],
     );
   }
 }
+

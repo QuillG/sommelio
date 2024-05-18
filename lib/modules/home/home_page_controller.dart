@@ -56,7 +56,8 @@ class HomePageController {
     List<ResumeEventCase> resumeEventCases = [];
     List<ResumeEvent> resumeEvents = await repository.getEvents();
     for (var resumeEvent in resumeEvents) {
-      resumeEventCases.add(ResumeEventCase(resumeEvent: resumeEvent));
+      var index = resumeEvents.indexOf(resumeEvent);
+      resumeEventCases.add(ResumeEventCase(resumeEvent: resumeEvent, index: index));
     }
     return resumeEventCases;
   }

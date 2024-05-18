@@ -68,7 +68,9 @@ flutter:
   assets:
   
     - assets/other/
+    - assets/Photos/
     - assets/logo/
+    - assets/navbarIcones/PLEIN/
     - assets/navbarIcones/VIDE/
     - assets/other/NOIR/
 
