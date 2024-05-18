@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sommelio/config/app-colors.dart';
@@ -6,6 +5,7 @@ import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
 import 'package:sommelio/widget/connexion_BottomSheet.dart';
+import 'package:sommelio/widget/inscription_BottomSheet%20copy.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -130,7 +130,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled:
+                      true, // Pour la prise en compte du clavier
+                  builder: (BuildContext context) {
+                    return RegistrationWidget(controller: controller);
+                  },
+                );
               },
               child: const Text(
                 'Je m\'inscris',

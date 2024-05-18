@@ -18,5 +18,6 @@ class AppIcons {
   static const String bottomBarHeart = 'assets/navbarIcones/VIDE/Heart.png';
   static const String bottomBarProfile = 'assets/navbarIcones/VIDE/Profile.png';
   static const String bottomBarMap = 'assets/navbarIcones/VIDE/Maps.png';
+  
 
 }

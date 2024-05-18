@@ -1,14 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sommelio/models/delicacies.dart';
+import 'package:sommelio/models/resumeevent.dart';
 import 'package:sommelio/models/wine_type.dart';
 import 'package:sommelio/modules/services/authentication_service.dart';
+import 'package:sommelio/modules/services/event_service.dart';
 import 'package:sommelio/modules/services/wine_search_service.dart';
 import 'package:sommelio/repository/repository.dart';
 import 'package:sommelio/widget/btn.dart';
+import 'package:sommelio/widget/resumeEventCase.dart';
 
 class HomePageController {
   late Repository repository =
-      Repository(AuthenticationService(), WineSearchService());
+      Repository(AuthenticationService(), WineSearchService(), EventsService());
 
   Future<List<WineType>> getWineTypes() async {
     return await repository.getWineTypes();
@@ -46,5 +50,14 @@ class HomePageController {
       ));
     }
     return btns;
+  }
+
+  Future<List<ResumeEventCase>> getResumeEventCases() async {
+    List<ResumeEventCase> resumeEventCases = [];
+    List<ResumeEvent> resumeEvents = await repository.getEvents();
+    for (var resumeEvent in resumeEvents) {
+      resumeEventCases.add(ResumeEventCase(resumeEvent: resumeEvent));
+    }
+    return resumeEventCases;
   }
 }

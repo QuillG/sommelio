@@ -3,8 +3,6 @@ import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/home/home_page.dart';
 import 'package:sommelio/modules/login/login_page.dart';
 import 'package:sommelio/modules/openingPage/open_page.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Navigation',
       initialRoute: '/',
       routes: {
-        '/': (context) => const OpenPage(),
+        '/': (context) => OpenPage(),
         '/login': (context) => LoginPage(),
       },
       onGenerateRoute: (RouteSettings settings) {
