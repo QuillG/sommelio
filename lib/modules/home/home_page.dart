@@ -29,8 +29,7 @@ class _HomePageState extends State<HomePage> {
     Future<List<Btn>> btnPrincipalDelicaciesFuture =
         controller.btnPrincipalDelicaces();
 
-    return BasePage(
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding global à gauche et à droite
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +178,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

@@ -41,10 +41,10 @@ class _CustomLoginWidgetState extends State<CustomLoginWidget> {
         Navigator.pop(context); // Masquer l'indicateur de chargement
 
         if (isUserAuthenticated != null) {
-          // Naviguer vers la page d'accueil si l'authentification est réussie
-          Navigator.pushNamed(
+          // Naviguer vers la page basePage avec l'utilisateur authentifié et remplacer la page actuelle
+          Navigator.pushReplacementNamed(
             context,
-            '/home',
+            '/basePage',
             arguments: isUserAuthenticated,
           );
         } else {
@@ -79,15 +79,20 @@ class _CustomLoginWidgetState extends State<CustomLoginWidget> {
         SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.only(top: 126, left: 16, right: 16, bottom: 16),
-            height: MediaQuery.of(context).size.height, // Prend toute la hauteur de l'écran
+            height: MediaQuery.of(context)
+                .size
+                .height, // Prend toute la hauteur de l'écran
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.7), // Ajoutez une certaine transparence pour voir le WavePage en dessous
+              color: Colors.white.withOpacity(
+                  0.7), // Ajoutez une certaine transparence pour voir le WavePage en dessous
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Connexion', style: TextStyle(fontSize: 35, fontFamily: AppFonts.heavitas)),
+                Text('Connexion',
+                    style:
+                        TextStyle(fontSize: 35, fontFamily: AppFonts.heavitas)),
                 SizedBox(height: 52),
                 TextField(
                   controller: widget.controller.usernameController,
@@ -115,7 +120,8 @@ class _CustomLoginWidgetState extends State<CustomLoginWidget> {
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.blue, // Couleur de fond
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding du bouton
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32.0, vertical: 16.0), // Padding du bouton
                     textStyle: const TextStyle(
                       fontSize: 20.0,
                       fontFamily: AppFonts.avenirHeavy,

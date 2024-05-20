@@ -8,5 +8,6 @@ class AppColors {
   static const pink = Color(0xFFF299B0);
   static const green = Color(0xFF03A659);
   static const red = Color(0xFFE94A28);
+  static const grey = Color.fromARGB(255, 228, 228, 228);
   
 }

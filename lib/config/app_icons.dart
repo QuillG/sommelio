@@ -8,6 +8,7 @@ class AppIcons {
   static const String boeuf = 'assets/other/NOIR/Boeuf.png';
   static const String veau = 'assets/other/NOIR/Veau.png';
   static const String agneau = 'assets/other/NOIR/Agneau.png';
+  static const String magnum = 'assets/other/NOIR/Magnum.png';
   static const String porc = 'assets/other/NOIR/Porc.png';
   static const String vegetarien = 'assets/other/NOIR/Végétarien.png';
   static const String charcuterie = 'assets/other/NOIR/Charcuterie.png';

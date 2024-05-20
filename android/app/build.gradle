@@ -23,6 +23,11 @@ if (flutterVersionName == null) {
 }
 
 android {
+
+    defaultConfig {
+        minSdkVersion flutter.minSdkVersion
+    }
+    
     namespace "com.example.sommelio"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
