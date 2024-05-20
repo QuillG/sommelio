@@ -24,17 +24,9 @@ class LoginPageController {
     return user;
   }
 
-  Future<Professional?> registerProfessional(String name, String surname, String username, String password) async {
-    Professional user = await repository.registerProfessional(name, surname, username, password);
-    print('User: $user');
-    // if (user != null) {
-    //   await saveUser(user);
-    // }
-    return user;
-  }
 
-  Future<Particular?> registerParticular(String name, String surname, String email, String password) async {
-    Particular user = await repository.registerParticular(name, surname, email, password);
+  Future<User?> register(String name, String surname, String email, String password, String userType) async {
+    User user = await repository.register(name, surname, email, password, userType);
     print('User: $user');
     // if (user != null) {
     //   await saveUser(user);

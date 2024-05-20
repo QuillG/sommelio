@@ -19,12 +19,8 @@ class Repository {
     return authService.login(username, password);
   }
 
-  Future<Professional> registerProfessional(String name, String surname, String email, String password) async {
-    return authService.registerProfessional(name, surname, email, password);
-  }
-
-  Future<Particular> registerParticular(String name, String surname, String email, String password) async {
-    return authService.registerParticular(name, surname, email, password);
+  Future<User> register(String name, String surname, String email, String password, String userType) async {
+    return authService.registerUser(name, surname, email, password, userType);
   }
 
   Future<List<WineType>> getWineTypes() async {

@@ -25,6 +25,7 @@ class AppIcons {
   static const String bottomBarProfileActive = 'assets/navbarIcones/PLEIN/Profile.png';
   static const String bottomBarMapActive = 'assets/navbarIcones/PLEIN/Maps.png';
   static const String eventIcone = 'assets/other/eventWine.png';
+  static const String profileIcone = 'assets/other/utilisateur.png';
   
 
 }

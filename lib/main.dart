@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/Profile/profie_page.dart';
+import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/home/home_page.dart';
 import 'package:sommelio/modules/login/login_page.dart';
 import 'package:sommelio/modules/openingPage/open_page.dart';
@@ -16,12 +16,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // make a dev config for redirect directly on profile page
-    final User user = User(
-      name: 'John',
-      email: 'JohnDoe@gmail.com',
-      surname: 'Doe',
-      profilePictureUrl: 'assets/Photos/PhotoProfil.webp',
-    );
+    // final User user = User(
+    //   name: 'John',
+    //   email: 'JohnDoe@gmail.com',
+    //   surname: 'Doe',
+    //   profilePictureUrl: 'assets/Photos/PhotoProfil.webp',
+    //   fidelityGrade: 'Newbie',
+    //   fidelityPoints: 0,
+    //   userType: 'Particular',
+    // );
 
     // return MaterialApp(
     //   title: 'Navigation',

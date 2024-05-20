@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/Profile/profie_page.dart';
+import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/home/home_page.dart';
 
 class MyPageController extends ChangeNotifier {

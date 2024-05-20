@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/modules/Maps/maps_page.dart';
-import 'package:sommelio/modules/Profile/profie_page.dart';
+import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/fav/favorite_page.dart';
 import 'package:sommelio/modules/home/home_page.dart';
 import 'package:sommelio/template/custom_header.dart';

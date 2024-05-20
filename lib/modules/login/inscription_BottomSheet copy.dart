@@ -3,6 +3,7 @@ import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/models/particular.dart';
 import 'package:sommelio/models/professional.dart';
+import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
 
 class RegistrationWidget extends StatefulWidget {
@@ -48,32 +49,18 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
 
       try {
         // Logique pour enregistrer l'utilisateur (à implémenter dans le controller)
-        Particular? isUserParticularRegistered;
-        Professional? isUserProfessionalRegistered;
-        if (userType == 'particulier') {
-          isUserParticularRegistered = await widget.controller.registerParticular(
-            nameController.text,
-            surnameController.text,
-            usernameController.text,
-            passwordController.text,
-          );
-        } else {
-          isUserProfessionalRegistered = await widget.controller.registerProfessional(
-            nameController.text,
-            surnameController.text,
-            usernameController.text,
-            passwordController.text,
-          );
-        }
+        User? isUserRegistered;
+
+        
 
         Navigator.pop(context); // Masquer l'indicateur de chargement
 
-        if (isUserParticularRegistered != null || isUserProfessionalRegistered != null) {
+        if (isUserRegistered != null) {
           // Naviguer vers la page d'accueil si l'inscription est réussie
           Navigator.pushNamed(
             context,
             '/home',
-            arguments: isUserParticularRegistered ?? isUserProfessionalRegistered,
+            arguments: isUserRegistered,
           );
         } else {
           setState(() {
@@ -105,8 +92,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
         ),
         SingleChildScrollView(
           child: Container(
-            padding:
-                const EdgeInsets.only(top: 126, left: 16, right: 16, bottom: 16),
+            padding: const EdgeInsets.only(
+                top: 126, left: 16, right: 16, bottom: 16),
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.7),
@@ -116,7 +103,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text('Inscription',
-                    style: TextStyle(fontSize: 35, fontFamily: AppFonts.heavitas)),
+                    style:
+                        TextStyle(fontSize: 35, fontFamily: AppFonts.heavitas)),
                 SizedBox(height: 52),
                 TextField(
                   controller: nameController,
@@ -168,7 +156,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                               userType = value!;
                             });
                           },
-                          activeColor: AppColors.green, // Couleur verte pour Particulier
+                          activeColor:
+                              AppColors.green, // Couleur verte pour Particulier
                         ),
                       ),
                     ),
@@ -183,7 +172,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                               userType = value!;
                             });
                           },
-                          activeColor: AppColors.yellow, // Couleur jaune pour Professionnel
+                          activeColor: AppColors
+                              .yellow, // Couleur jaune pour Professionnel
                         ),
                       ),
                     ),
@@ -201,7 +191,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                   onPressed: _register,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.blue,
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32.0, vertical: 16.0),
                     textStyle: const TextStyle(
                       fontSize: 20.0,
                       fontFamily: AppFonts.avenirHeavy,

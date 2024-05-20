@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int fidelityPoints = user.fidelityPoints;
     return Padding(
         padding: const EdgeInsets.only(
           top: 40.0,
@@ -23,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 250.0, // Taille définie pour le Stack
+              height: 250.0,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -37,10 +38,9 @@ class ProfilePage extends StatelessWidget {
                             width: 2,
                           ),
                         ),
-                        child: CircleAvatar(
-                          backgroundImage: user.profilePictureUrl == null
-                              ? Image.asset(AppPicture.photoProfil).image
-                              : Image.asset(user.profilePictureUrl!).image,
+                        child: const CircleAvatar(
+                          radius: 62.5,
+                          backgroundColor: AppColors.black,
                         )),
                   ),
                   Positioned(
@@ -66,9 +66,9 @@ class ProfilePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(height: 50.0), // Space for the circle
+                              SizedBox(height: 50.0),
                               Text(
-                                user.name + ' ' + user.surname,
+                                '${user.name} ${user.surname}',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -116,30 +116,30 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         radius: 50,
-                        backgroundImage:
-                            Image.asset(user.profilePictureUrl!).image,
+                        backgroundColor: AppColors.white,
+                        backgroundImage: user.profilePictureUrl == null
+                            ? AssetImage(AppIcons.profileIcone)
+                            : AssetImage(user.profilePictureUrl!),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-                height: 10.0), // Espace entre le contenu principal et le bouton
+            const SizedBox(height: 10.0),
             SizedBox(
               height: 53,
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.white, // Couleur de fond du bouton (blanc)
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                     side: const BorderSide(
                       color: AppColors.black,
                       width: 2.0,
-                    ), // Bordure du bouton
+                    ),
                   ),
                 ),
                 child: const Row(
@@ -163,8 +163,7 @@ class ProfilePage extends StatelessWidget {
             Stack(
               children: [
                 Column(children: [
-                  const SizedBox(
-                      height: 20.0), // Espace entre le bouton et le texte
+                  const SizedBox(height: 20.0),
                   const Text(
                     'MAGNUM',
                     style: TextStyle(
@@ -188,7 +187,7 @@ class ProfilePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Continue à déguster et à découvrir',
+                          'Continue à déguster et à découvrir pour gagner ta recompense !',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey[800],
@@ -198,7 +197,6 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4.0),
-                  //barre de progression de 0 a 150 avec une valeur qui determine la progression
                   LinearProgressIndicator(
                     borderRadius: BorderRadius.circular(16.0),
                     minHeight: 28,
@@ -207,9 +205,9 @@ class ProfilePage extends StatelessWidget {
                     valueColor: AlwaysStoppedAnimation<Color>(AppColors.black),
                   ),
                   const SizedBox(height: 4.0),
-                  // affiche coombien/combien
                   Text(
-                    '100/150',
+                    // add the fidelity point of user with user.fidelityPoint,
+                    '150/150',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[800],

@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Text(
-                      widget.user.name,
+                      widget.user.surname,
                       style: const TextStyle(
                         fontFamily: AppFonts.heavitas,
                         fontSize: 48,
