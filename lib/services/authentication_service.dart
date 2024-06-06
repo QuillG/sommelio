@@ -5,12 +5,12 @@ import 'package:sommelio/models/professional.dart';
 import 'package:sommelio/models/user.dart';
 import 'dart:convert' as convert;
 
-class AuthenticationService {
-final String baseUrl = 'localhost:44335';
+import 'package:sommelio/services/base_url.dart';
 
+class AuthenticationService {
 
   Future<User> login(String username, String password) async {
-    var url = Uri.https(baseUrl, '/User/Login');
+    var url = BaseUrl.loginUrl();
     print(url);
     try {
       var response = await http.post(
@@ -32,15 +32,22 @@ final String baseUrl = 'localhost:44335';
       throw Exception(e.toString());
     }
   }
-  
-  Future<User> registerUser (String name, String surname, String email, String password, String userType) async {
-    var url = Uri.https(baseUrl, '/User/AddUser');
+
+  Future<User> registerUser(String name, String surname, String email,
+      String password, String userType) async {
+    var url = BaseUrl.registerUrl();
     print(url);
     try {
       var response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'}, // Set Content-Type
-        body: jsonEncode({'name': name, 'surname': surname, 'email': email, 'password': password, 'userType': userType}),
+        body: jsonEncode({
+          'name': name,
+          'surname': surname,
+          'email': email,
+          'password': password,
+          'userType': userType
+        }),
       );
 
       if (response.statusCode == 200) {

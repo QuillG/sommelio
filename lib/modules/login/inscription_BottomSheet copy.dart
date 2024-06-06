@@ -25,6 +25,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   String? errorMessage;
   String userType = 'particulier';
 
+
   Future<void> _register() async {
     if (nameController.text.isNotEmpty &&
         surnameController.text.isNotEmpty &&
@@ -49,7 +50,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
 
       try {
         // Logique pour enregistrer l'utilisateur (à implémenter dans le controller)
-        User? isUserRegistered;
+        User? isUserRegistered = await widget.controller.register(
+          nameController.text,
+          surnameController.text,
+          usernameController.text,
+          passwordController.text,
+          'particulier',
+        );
+  
 
         
 

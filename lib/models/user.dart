@@ -5,8 +5,9 @@ class User {
   String userType;
   String? profilePictureUrl;
   int fidelityPoints;
-  String fidelityGrade; // Change to lowercase
+  String fidelityGrade;
   String? qrCode;
+  String inscriptionDate;
 
 
   User({
@@ -16,6 +17,7 @@ class User {
     required this.userType,
     required this.fidelityPoints,
     required this.fidelityGrade,
+    required this.inscriptionDate,
     this.profilePictureUrl,
     this.qrCode,
   });
@@ -29,6 +31,7 @@ class User {
       userType: json['user']['userType'],
       fidelityPoints: json['user']['fidelityPoints'],
       fidelityGrade: json['user']['fidelityGrade'],
+      inscriptionDate: json['user']['inscriptionDate'],
       qrCode: json['user']['qrCode'],
     );
   }
@@ -42,6 +45,7 @@ class User {
       'userType': userType,
       'fidelityPoints': fidelityPoints,
       'fidelityGrade': fidelityGrade,
+      'inscriptionDate': inscriptionDate,
       'qrCode': qrCode,
     };
   }

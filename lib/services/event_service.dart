@@ -1,13 +1,13 @@
 import 'package:http/http.dart' as http;
 import 'package:sommelio/models/resumeevent.dart';
+import 'package:sommelio/services/base_url.dart';
 import 'dart:convert' as convert;
 
 class EventsService {
-final String baseUrl = 'localhost:44335';
 
 
   Future<List<ResumeEvent>> getAllResumeEvents() async {
-    var url = Uri.https(baseUrl, '/Event/ResumeEvents');
+    var url = BaseUrl.getAllResumeEvents();
     print(url);
     try {
       var response = await http.get(

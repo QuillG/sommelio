@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/config/app_icons.dart';
+import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
 import 'package:sommelio/modules/login/connexion_BottomSheet.dart';
 import 'package:sommelio/modules/login/inscription_BottomSheet%20copy.dart';
@@ -23,17 +24,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void checkUser() async {
-    // User? user = await controller.getUser();
-    // if (user != null) {
-    //   // Si l'utilisateur est déjà connecté, naviguez vers la page d'accueil
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) => HomePage(
-    //               user: user,
-    //             )),
-    //   );
-    // }
+    User? user = await controller.getUser();
+    if (user != null) {
+      // Si l'utilisateur est déjà connecté, naviguez vers la page d'accueil
+          Navigator.pushReplacementNamed(
+            context,
+            '/basePage',
+            arguments: user,
+          );
+    }
   }
 
   @override

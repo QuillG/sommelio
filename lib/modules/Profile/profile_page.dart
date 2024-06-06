@@ -5,6 +5,7 @@ import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/config/app_picture.dart';
 import 'package:sommelio/models/user.dart';
+import 'package:sommelio/widget/qr_code_bottomSheet.dart';
 
 class ProfilePage extends StatelessWidget {
   final User user;
@@ -13,6 +14,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //passer du format AAAA-MM-JJ hh:mm:ss à JJ/MM/AAAA
+    String inscriptionDate = user.inscriptionDate;
     int fidelityPoints = user.fidelityPoints;
     return Padding(
         padding: const EdgeInsets.only(
@@ -58,8 +61,7 @@ class ProfilePage extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Stack(
                         children: [
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                               SizedBox(height: 4),
                               Text(
-                                '20/02/2023',
+                                '$inscriptionDate',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey[800],
@@ -92,13 +94,18 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
-                            children: List.generate(3, (index) {
-                              return const Icon(
-                                Icons.star,
-                                color: AppColors.red,
-                              );
-                            }),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: List.generate(3, (index) {
+                                return const Icon(
+                                  Icons.star,
+                                  color: AppColors.red,
+                                );
+                              }),
+                            ),
                           ),
                         ],
                       ),
@@ -131,7 +138,9 @@ class ProfilePage extends StatelessWidget {
               height: 53,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  QrCodeBottomSheet.show(context, '1234567890');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
@@ -200,14 +209,14 @@ class ProfilePage extends StatelessWidget {
                   LinearProgressIndicator(
                     borderRadius: BorderRadius.circular(16.0),
                     minHeight: 28,
-                    value: 100 / 150,
+                    value: user.fidelityPoints / 150,
                     backgroundColor: AppColors.grey,
                     valueColor: AlwaysStoppedAnimation<Color>(AppColors.black),
                   ),
                   const SizedBox(height: 4.0),
                   Text(
                     // add the fidelity point of user with user.fidelityPoint,
-                    '150/150',
+                    '$fidelityPoints / 150',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[800],

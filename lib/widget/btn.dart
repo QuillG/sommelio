@@ -32,47 +32,51 @@ class Btn extends StatelessWidget {
   Widget build(BuildContext context) {
     String assetPath = 'assets/other/NOIR/$text.png';
 
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.black),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-        color: colorBtn,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Center(
-        child: Column(
-          children: [
-            Text(
-              text,
-              style: TextStyle(
-                  color: colorBtn == AppColors.white
-                      ? AppColors.black
-                      : AppColors.white,
-                  fontSize: 16,
-                  fontFamily: AppFonts.avenirRegular),
-            ),
-            FutureBuilder<bool>(
-              future: _doesAssetExist(assetPath),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator(); // Ou n'importe quel widget de chargement
-                } else if (snapshot.hasData && snapshot.data == true) {
-                  return Image.asset(assetPath, width: 50, height: 50);
-                } else {
-                  return Container(); // Ne rien afficher si l'image n'existe pas
-                }
-              },
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.black),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
+          color: colorBtn,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                    color: colorBtn == AppColors.white
+                        ? AppColors.black
+                        : AppColors.white,
+                    fontSize: 16,
+                    fontFamily: AppFonts.avenirRegular),
+              ),
+              FutureBuilder<bool>(
+                future: _doesAssetExist(assetPath),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator(); // Ou n'importe quel widget de chargement
+                  } else if (snapshot.hasData && snapshot.data == true) {
+                    return Image.asset(assetPath, width: 50, height: 50);
+                  } else {
+                    return Container(); // Ne rien afficher si l'image n'existe pas
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

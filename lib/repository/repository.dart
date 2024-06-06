@@ -1,13 +1,11 @@
 
 import 'package:sommelio/models/delicacies.dart';
-import 'package:sommelio/models/particular.dart';
-import 'package:sommelio/models/professional.dart';
 import 'package:sommelio/models/resumeevent.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/models/wine_type.dart';
-import 'package:sommelio/modules/services/authentication_service.dart';
-import 'package:sommelio/modules/services/event_service.dart';
-import 'package:sommelio/modules/services/wine_search_service.dart';
+import 'package:sommelio/services/authentication_service.dart';
+import 'package:sommelio/services/event_service.dart';
+import 'package:sommelio/services/wine_search_service.dart';
 
 class Repository {
   final AuthenticationService authService;
@@ -27,8 +25,12 @@ class Repository {
     return wineSearchService.getWineTypes();
   }
 
-  Future<List<Delicacies>> getPrincipalDelicacies() async {
-    return wineSearchService.getPrincipalDelicacies();
+  Future<List<Delicacies>> getMainDelicacies() async {
+    return wineSearchService.getMainDelicacies();
+  }
+
+  Future<List<Delicacies>> getSubDelicacies(int mainId) async {
+    return wineSearchService.getSubDelicacies(mainId);
   }
 
   Future<List<ResumeEvent>> getEvents() async {

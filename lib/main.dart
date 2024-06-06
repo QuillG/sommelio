@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/home/home_page.dart';
 import 'package:sommelio/modules/login/login_page.dart';
 import 'package:sommelio/modules/openingPage/open_page.dart';
 import 'package:sommelio/template/base_page.dart';
 
+
 void main() {
   runApp(const MyApp());
+  
+  
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
+    
+
     // make a dev config for redirect directly on profile page
     // final User user = User(
     //   name: 'John',
@@ -24,6 +30,7 @@ class MyApp extends StatelessWidget {
     //   fidelityGrade: 'Newbie',
     //   fidelityPoints: 0,
     //   userType: 'Particular',
+    //   inscriptionDate: DateTime.now().toString(),
     // );
 
     // return MaterialApp(

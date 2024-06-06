@@ -3,9 +3,9 @@ import 'package:sommelio/dataBase/database_helper.dart';
 import 'package:sommelio/models/particular.dart';
 import 'package:sommelio/models/professional.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/services/authentication_service.dart';
-import 'package:sommelio/modules/services/event_service.dart';
-import 'package:sommelio/modules/services/wine_search_service.dart';
+import 'package:sommelio/services/authentication_service.dart';
+import 'package:sommelio/services/event_service.dart';
+import 'package:sommelio/services/wine_search_service.dart';
 import 'package:sommelio/repository/repository.dart';
 
 class LoginPageController {

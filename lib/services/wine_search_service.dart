@@ -1,16 +1,14 @@
-import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:sommelio/models/delicacies.dart';
-import 'package:sommelio/models/user.dart';
 import 'dart:convert' as convert;
-
 import 'package:sommelio/models/wine_type.dart';
+import 'package:sommelio/services/base_url.dart';
 
 class WineSearchService {
-final String baseUrl = 'localhost:44335';
 
   Future<List<WineType>> getWineTypes() async {
-    var url = Uri.https(baseUrl, '/WineType');
+    var url = BaseUrl.getWineTypes();
     print(url);
     try {
       var response = await http.get(
@@ -34,8 +32,33 @@ final String baseUrl = 'localhost:44335';
     }
   }
 
-  Future<List<Delicacies>> getPrincipalDelicacies() async {
-    var url = Uri.https(baseUrl, '/Delicacies/Principal');
+  Future<List<Delicacies>> getMainDelicacies() async {
+    var url = BaseUrl.getMainDelicacies();
+    print(url);
+    try {
+      var response = await http.get(
+        url,
+        headers: {'Content-Type': 'application/json'}, // Set Content-Type
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = convert.jsonDecode(response.body);
+        List<Delicacies> delicacies = [];
+        for (var delicacy in jsonResponse) {
+          delicacies.add(Delicacies.fromJson(delicacy));
+        }
+        return delicacies;
+      } else {
+        return Future.error('Échec');
+      }
+    } catch (e) {
+      // Gérer les erreurs ici
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<List<Delicacies>> getSubDelicacies(int mainId) async {
+    var url = BaseUrl.getSubDelicacies(mainId);
     print(url);
     try {
       var response = await http.get(

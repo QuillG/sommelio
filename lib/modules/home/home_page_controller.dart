@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/resumeevent.dart';
 import 'package:sommelio/models/wine_type.dart';
-import 'package:sommelio/modules/services/authentication_service.dart';
-import 'package:sommelio/modules/services/event_service.dart';
-import 'package:sommelio/modules/services/wine_search_service.dart';
+import 'package:sommelio/services/authentication_service.dart';
+import 'package:sommelio/services/event_service.dart';
+import 'package:sommelio/services/wine_search_service.dart';
 import 'package:sommelio/repository/repository.dart';
 import 'package:sommelio/widget/btn.dart';
 import 'package:sommelio/widget/resumeEventCase.dart';
@@ -18,8 +18,12 @@ class HomePageController {
     return await repository.getWineTypes();
   }
 
-  Future<List<Delicacies>> getPrincipalDelicacies() async {
-    return await repository.getPrincipalDelicacies();
+  Future<List<Delicacies>> getMainDelicacies() async {
+    return await repository.getMainDelicacies();
+  }
+
+  Future<List<Delicacies>> getSubDelicacies(int mainId) async {
+    return await repository.getSubDelicacies(mainId);
   }
 
   Future<List<Btn>> btnWineTypes() async {
@@ -37,19 +41,9 @@ class HomePageController {
     return btns;
   }
 
-  Future<List<Btn>> btnPrincipalDelicaces() async {
-    List<Btn> btns = [];
-    List<Delicacies> delicacies = await getPrincipalDelicacies();
-    for (var delicacy in delicacies) {
-      // construire des boutton
-      btns.add(Btn(
-        text: delicacy.name,
-        colorBtn: Color(int.parse(delicacy.colorBtn)),
-        width: 100,
-        height: 100,
-      ));
-    }
-    return btns;
+  Future<List<Delicacies>> btnPrincipalDelicaces() async {
+    List<Delicacies> delicacies = await getMainDelicacies();
+    return delicacies;
   }
 
   Future<List<ResumeEventCase>> getResumeEventCases() async {
