@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/home/home_page.dart';
+import 'package:sommelio/modules/home/home_pages.dart';
 import 'package:sommelio/modules/login/login_page.dart';
 import 'package:sommelio/modules/openingPage/open_page.dart';
 import 'package:sommelio/template/base_page.dart';

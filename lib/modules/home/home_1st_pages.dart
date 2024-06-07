@@ -5,20 +5,20 @@ import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/home/home_page_controller.dart';
-import 'package:sommelio/modules/met&vin/met&vin_page.dart';
 import 'package:sommelio/widget/btn.dart';
 import 'package:sommelio/widget/resumeEventCase.dart';
 
-class HomePage extends StatefulWidget {
+class Home1stPage extends StatefulWidget {
   final User user;
+  final Function(Delicacies)? btnDelicaciesClicked;
 
-  const HomePage({required this.user, Key? key}) : super(key: key);
+  const Home1stPage({required this.user, this.btnDelicaciesClicked, Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Home1stPage> createState() => _Home1stPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _Home1stPageState extends State<Home1stPage> {
   late HomePageController controller = HomePageController();
 
   @override
@@ -105,7 +105,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 12.0),
-          //create Btn with delicacies
           FutureBuilder<List<Delicacies>>(
             future: btnPrincipalDelicaciesFuture,
             builder: (context, snapshot) {
@@ -122,20 +121,13 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Btn(
                                 text: delicacy.name,
+                                imgName: delicacy.imgName,
                                 colorBtn: Color(int.parse(delicacy.colorBtn)),
                                 width: 100,
                                 height: 100,
                                 onPressed: () {
                                   print('Delicacy ${delicacy.name} clicked');
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MetVinPage(
-                                        user: widget.user,
-                                        mainDelicacy: delicacy,
-                                      ),
-                                    ),
-                                  );
+                                  widget.btnDelicaciesClicked?.call(delicacy);
                                 },
                               ),
                             ))

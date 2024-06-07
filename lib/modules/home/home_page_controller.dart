@@ -33,6 +33,7 @@ class HomePageController {
       // construire des boutton
       btns.add(Btn(
         text: wineType.name,
+        imgName: wineType.imgName,
         colorBtn: Color(int.parse(wineType.colorBtn)),
         width: 100,
         height: 100,

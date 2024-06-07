@@ -1,10 +1,10 @@
 class AppIcons {
-  static const String handGlasses = 'assets/other/NOIR/Fichier_194x.png';
+  static const String handGlasses = 'assets/other/NOIR/HandGlasseConnexion.png';
   static const String glasses = 'assets/other/NOIR/verrePied.png';
   static const String gibier = 'assets/other/NOIR/Gibier.png';
   static const String fromage = 'assets/other/NOIR/Fromage.png';
   static const String poissons = 'assets/other/NOIR/Poisson.png';
-  static const String viandes = 'assets/other/NOIR/Viande.png';
+  static const String viandes = 'assets/other/NOIR/ViandeRouge.png';
   static const String boeuf = 'assets/other/NOIR/Boeuf.png';
   static const String veau = 'assets/other/NOIR/Veau.png';
   static const String agneau = 'assets/other/NOIR/Agneau.png';

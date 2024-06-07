@@ -4,7 +4,7 @@ class BaseUrl {
   //localPhone
   //static const String defaultbaseUrl ='10.0.2.2:7282';
   //localComputer
-  static const String defaultbaseUrl = 'localhost:32788';
+  static const String defaultbaseUrl = 'localhost:32790';
 
   static Uri loginUrl() {
     return Uri.https(defaultbaseUrl, '/User/Login');
@@ -27,6 +27,6 @@ class BaseUrl {
   }
 
   static Uri getSubDelicacies(int mainId) {
-    return Uri.https(defaultbaseUrl, '/Delicacies/ParentName/$mainId');
+    return Uri.https(defaultbaseUrl, '/Delicacies/ParentId/$mainId');
   }
 }

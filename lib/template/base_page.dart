@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/config/app_icons.dart';
+import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/modules/Maps/maps_page.dart';
 import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/fav/favorite_page.dart';
-import 'package:sommelio/modules/home/home_page.dart';
+import 'package:sommelio/modules/home/home_pages.dart';
+import 'package:sommelio/modules/met&vin/met&vin_page.dart';
 import 'package:sommelio/template/custom_header.dart';
 import 'package:sommelio/models/user.dart';
 
 class BasePage extends StatefulWidget {
-  final User user;  // Add this line
+  final User user;
 
-  BasePage({required this.user});  // Add 'required this.user'
+  BasePage({required this.user});
 
   @override
   _BasePageState createState() => _BasePageState();
@@ -19,7 +21,7 @@ class BasePage extends StatefulWidget {
 class _BasePageState extends State<BasePage> {
   int _currentIndex = 0;
 
-  setcurrentIndex(int index) {
+  void setcurrentIndex(int index) {
     setState(() {
       _currentIndex = index;
     });
@@ -27,17 +29,19 @@ class _BasePageState extends State<BasePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [
+      HomePage(user: widget.user),    
+      FavoritePage(),
+      MapPage(),
+      ProfilePage(user: widget.user),
+    ];
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(120.0),
+        preferredSize: const Size.fromHeight(120.0),
         child: CustomHeader(),
       ),
-      body: [
-        HomePage(user: widget.user),
-        FavoritePage(),
-        MapPage(),
-        ProfilePage(user: widget.user)
-      ].elementAt(_currentIndex),
+      body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) => setcurrentIndex(index),

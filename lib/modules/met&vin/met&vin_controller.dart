@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/services/authentication_service.dart';
 import 'package:sommelio/services/event_service.dart';
 import 'package:sommelio/services/wine_search_service.dart';
 import 'package:sommelio/repository/repository.dart';
-import 'package:sommelio/widget/btn.dart';
 
 class MetVinController {
   late Repository repository =
@@ -16,19 +13,9 @@ class MetVinController {
   }
 
 
-  Future<List<Btn>> btnSubDelicaces(int mainId) async {
-    List<Btn> btns = [];
+  Future<List<Delicacies>> btnSubDelicaces(int mainId) async {
     List<Delicacies> delicacies = await getSubDelicacies(mainId);
-    for (var delicacy in delicacies) {
-      // construire des boutton
-      btns.add(Btn(
-        text: delicacy.name,
-        colorBtn: Color(int.parse(delicacy.colorBtn)),
-        width: 200,
-        height: 300,
-      ));
-    }
-    return btns;
+    return delicacies;
   }
 
 }

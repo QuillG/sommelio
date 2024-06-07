@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/Profile/profile_page.dart';
-import 'package:sommelio/modules/home/home_page.dart';
+import 'package:sommelio/modules/home/home_pages.dart';
 
 class MyPageController extends ChangeNotifier {
   int _currentIndex = 0;
