@@ -26,7 +26,7 @@ class ResumeEvent {
   }
 
   Map<String, dynamic> toJson() {
-    return {    
+    return {
       'id': id,
       'description': description,
       'date': date,

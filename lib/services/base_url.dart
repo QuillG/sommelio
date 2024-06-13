@@ -1,10 +1,10 @@
 class BaseUrl {
   //online
-  static const String defaultbaseUrl = 'api.sommelio.fr';
+  //static const String defaultbaseUrl = 'api.sommelio.fr';
   //localPhone
   //static const String defaultbaseUrl ='10.0.2.2:7282';
   //localComputer
-  //static const String defaultbaseUrl = 'localhost:32768';
+  static const String defaultbaseUrl = 'localhost:32772';
 
   static Uri loginUrl() {
     return Uri.https(defaultbaseUrl, '/User/Login');
@@ -42,7 +42,7 @@ class BaseUrl {
     return Uri.https(defaultbaseUrl, 'Wine');
   }
 
-  static Uri AddWineToFavorite(int wineId, int userId) {
+  static Uri AddWineToFavorite(int userId, int wineId) {
     return Uri.https(defaultbaseUrl, 'Wine/User/$userId/Favorite/$wineId');
   }
 

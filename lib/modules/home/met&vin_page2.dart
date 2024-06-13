@@ -101,8 +101,8 @@ class _MetVinState extends State<MetVinPage2> {
                               text: delicacy.name,
                               imgName: delicacy.imgName,
                               colorBtn: Color(int.parse(delicacy.colorBtn)),
-                              width: 150,
-                              height: 150,
+                              width: 140,
+                              height: 140,
                               onPressed: () {
                                 widget.btnDelicaciesClicked!(delicacy);
                               },
@@ -117,8 +117,10 @@ class _MetVinState extends State<MetVinPage2> {
           ),
 
           const SizedBox(height: 60.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8.0, // espace entre les enfants
+            runSpacing: 4.0, // espace entre les lignes
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,24 +1,55 @@
-# Utilisation de l'image Flutter comme base
-FROM cirrusci/flutter:latest AS build
+# Stage 1 - Install dependencies and build the app in a build environment
+FROM debian:latest AS build-env
 
-# Création de l'utilisateur non privilégié pour exécuter les commandes Flutter
-USER root
-RUN adduser --disabled-password --gecos '' flutteruser
+# Install Flutter dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    wget \
+    unzip \
+    libgconf-2-4 \
+    gdb \
+    libstdc++6 \
+    libglu1-mesa \
+    fonts-droid-fallback \
+    lib32stdc++6 \
+    python3 \
+    sed && \
+    apt-get clean
 
-# Définition du répertoire de travail dans l'image
+# Clone the Flutter repo
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+
+# Set Flutter path
+ENV PATH="${PATH}:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin"
+
+# Run Flutter doctor
+RUN flutter doctor -v
+
+# Switch to master channel and upgrade Flutter
+RUN flutter channel master
+RUN flutter upgrade
+
+# Clone the app repository
+RUN git clone https://github.com/QuillG/sommelio.git /app
+
+# Set the working directory
 WORKDIR /app
 
-# Copiez les fichiers de votre application Flutter dans le conteneur
-COPY . .
-
-# Changer l'utilisateur pour flutteruser pour exécuter les commandes suivantes
-USER flutteruser
-
-# Exécuter la configuration Flutter --enable-web (vous pouvez essayer de créer une exception pour le répertoire)
-RUN flutter config --enable-web
-
-# Installez les dépendances Flutter
+# Get dependencies
 RUN flutter pub get
 
-# Build de l'application Flutter pour le web
+# Build the Flutter web app
 RUN flutter build web
+
+# Stage 2 - Create the run-time image
+FROM nginx:1.21.1-alpine
+
+# Copy the built web app to the NGINX html directory
+COPY --from=build-env /app/build/web /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start NGINX server
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sommelio/models/delicacies.dart';
-import 'package:sommelio/models/resumeevent.dart';
+import 'package:sommelio/models/resumeEvent.dart';
 import 'package:sommelio/models/wine_type.dart';
 import 'package:sommelio/services/authentication_service.dart';
 import 'package:sommelio/services/event_service.dart';

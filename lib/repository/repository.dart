@@ -1,7 +1,7 @@
 
 import 'package:sommelio/models/Wines.dart';
 import 'package:sommelio/models/delicacies.dart';
-import 'package:sommelio/models/resumeevent.dart';
+import 'package:sommelio/models/resumeEvent.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/models/wine_type.dart';
 import 'package:sommelio/services/authentication_service.dart';

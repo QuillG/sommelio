@@ -52,7 +52,7 @@ class _MetVinState extends State<MetVinPage> {
                     style: TextStyle(
                       color: AppColors.black,
                       fontFamily: AppFonts.heavitas,
-                      fontSize: 48,
+                      fontSize: 42,
                     ),
                   ),
                 ],
@@ -84,7 +84,7 @@ class _MetVinState extends State<MetVinPage> {
                             text: delicacy.name,
                             imgName: delicacy.imgName,
                             colorBtn: Color(int.parse(delicacy.colorBtn)),
-                            width: 150,
+                            width: 140,
                             height: 200,
                             onPressed: () {
                               print('Delicacy ${delicacy.name} clicked');

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/config/app-colors.dart';
-import 'package:sommelio/models/resumeevent.dart';
+import 'package:sommelio/models/resumeEvent.dart';
 
 class ResumeEventCase extends StatelessWidget {
   final ResumeEvent resumeEvent;
   final int index;
 
-  const ResumeEventCase(
-      {Key? key, required this.resumeEvent, required this.index})
-      : super(key: key);
+  const ResumeEventCase({Key? key, required this.resumeEvent, required this.index}) : super(key: key);
 
   // Méthode pour obtenir les couleurs en fonction de l'index
   Map<String, Color> getColorsByIndex(int index) {
@@ -45,7 +43,7 @@ class ResumeEventCase extends StatelessWidget {
     final colors = getColorsByIndex(index);
 
     return Container(
-      height: 121,
+      height: 130,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -61,58 +59,66 @@ class ResumeEventCase extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                resumeEvent.date,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: colors['date'],
-                ),
-              ),
-              const Spacer(),
-              Text(
-                resumeEvent.companyName,
-                style: TextStyle(
-                  fontSize: 12,
-                  decoration: TextDecoration.underline,
-                  color: colors['text'],
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                resumeEvent.description,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: colors['text'],
-                ),
-              ),
-              const Spacer(),
-              Row(
-                children: [
-                  Icon(Icons.location_on, color: colors['text']),
-                  const SizedBox(width: 5),
-                  Text(
-                    resumeEvent.location,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: colors['text'],
-                    ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  resumeEvent.date,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: colors['date'],
                   ),
-                ],
-              )
-            ],
+                ),
+                const Spacer(),
+                Text(
+                  resumeEvent.companyName,
+                  style: TextStyle(
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                    color: colors['text'],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  resumeEvent.description,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: colors['text'],
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Icon(Icons.location_on, color: colors['text']),
+                    const SizedBox(width: 5),
+                    Text(
+                      resumeEvent.location,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: colors['text'],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-          Image.asset(
-            resumeEvent.pictureUrl != null
-                ? "assets/Photos/${resumeEvent.pictureUrl}.webp"
-                : "assets/other/eventWine.png",
-            fit: BoxFit.cover,
-          )
+          SizedBox(
+            width: 100, // Fixe une largeur pour l'image
+            height: 100, // Fixe une hauteur pour l'image
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                resumeEvent.pictureUrl != null
+                    ? "assets/Photos/${resumeEvent.pictureUrl}.webp"
+                    : "assets/other/eventWine.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ],
       ),
     );

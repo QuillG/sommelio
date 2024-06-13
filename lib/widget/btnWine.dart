@@ -91,7 +91,7 @@ class BtnWine extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 9, bottom: 9, left: 40),
+                  padding: const EdgeInsets.only(top: 9, bottom: 9, left: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:sommelio/models/resumeevent.dart';
+import 'package:sommelio/models/resumeEvent.dart';
 import 'package:sommelio/services/base_url.dart';
 import 'dart:convert' as convert;
 

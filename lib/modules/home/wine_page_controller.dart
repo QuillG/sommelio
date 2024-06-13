@@ -10,8 +10,8 @@ class WinePageController {
       Repository(AuthenticationService(), WineSearchService(), EventsService());
 
 
-  Future<bool> addToFavorite (int userId, int WineId) async {
-    return await repository.addWineToFavorite(userId, WineId);
+  Future<bool> addToFavorite (int userId, int wineId) async {
+    return await repository.addWineToFavorite(userId, wineId);
   }
 
 }
