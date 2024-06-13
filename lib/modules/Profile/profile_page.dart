@@ -3,7 +3,7 @@ import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/widget/qr_code_bottomSheet.dart';
+import 'package:sommelio/template/qr_code_bottomSheet.dart';
 
 class ProfilePage extends StatelessWidget {
   final User user;
@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //passer du format AAAA-MM-JJ hh:mm:ss à JJ/MM/AAAA
-    String inscriptionDate = user.inscriptionDate;
+    String inscriptionDate = user.inscriptionDate ?? DateTime.now().toString();
     int fidelityPoints = user.fidelityPoints;
     return Padding(
         padding: const EdgeInsets.only(

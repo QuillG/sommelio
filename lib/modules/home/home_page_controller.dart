@@ -7,8 +7,8 @@ import 'package:sommelio/services/authentication_service.dart';
 import 'package:sommelio/services/event_service.dart';
 import 'package:sommelio/services/wine_search_service.dart';
 import 'package:sommelio/repository/repository.dart';
-import 'package:sommelio/widget/btn.dart';
-import 'package:sommelio/widget/resumeEventCase.dart';
+import 'package:sommelio/template/btn.dart';
+import 'package:sommelio/template/resumeEventCase.dart';
 
 class HomePageController {
   late Repository repository =

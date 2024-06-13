@@ -8,8 +8,8 @@ import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/fav/favorite_controller.dart';
 import 'package:sommelio/modules/home/met&vin_controller.dart';
 import 'package:sommelio/modules/home/wine_page.dart';
-import 'package:sommelio/widget/btn.dart';
-import 'package:sommelio/widget/btnWine.dart';
+import 'package:sommelio/template/btn.dart';
+import 'package:sommelio/template/btnWine.dart';
 
 class FavoritePage extends StatefulWidget {
   final User user;

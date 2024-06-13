@@ -4,7 +4,7 @@ import 'package:sommelio/models/Wines.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/resultPage/result_page_controller.dart';
-import 'package:sommelio/widget/btnWine.dart';
+import 'package:sommelio/template/btnWine.dart';
 
 class ResultPage extends StatefulWidget {
   final User user;

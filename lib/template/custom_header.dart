@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_icons.dart';
-import 'package:sommelio/widget/qr_code_bottomSheet.dart';
+import 'package:sommelio/template/qr_code_bottomSheet.dart';
 
 class CustomHeader extends StatefulWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + (kToolbarHeight / 2));
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + (kToolbarHeight / 2));
 
   @override
   _CustomHeaderState createState() => _CustomHeaderState();
@@ -46,12 +46,12 @@ class _CustomHeaderState extends State<CustomHeader> {
               onPressed: () {
                 QrCodeBottomSheet.show(context, '1234567890');
               },
-              icon: Icon(Icons.qr_code, color: AppColors.black, size: 35.0),
+              icon: const Icon(Icons.qr_code, color: AppColors.black, size: 35.0),
             ),
           ],
         ),
         AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           height: isSearching ? 60.0 : 0.0,
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: isSearching

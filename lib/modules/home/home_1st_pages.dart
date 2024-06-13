@@ -5,8 +5,8 @@ import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/home/home_page_controller.dart';
-import 'package:sommelio/widget/btn.dart';
-import 'package:sommelio/widget/resumeEventCase.dart';
+import 'package:sommelio/template/btn.dart';
+import 'package:sommelio/template/resumeEventCase.dart';
 
 class Home1stPage extends StatefulWidget {
   final User user;

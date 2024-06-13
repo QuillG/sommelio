@@ -6,7 +6,7 @@ import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/home/met&vin_controller.dart';
-import 'package:sommelio/widget/btn.dart';
+import 'package:sommelio/template/btn.dart';
 
 class MetVinPage2 extends StatefulWidget {
   final User user;

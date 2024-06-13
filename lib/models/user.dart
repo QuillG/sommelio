@@ -8,7 +8,7 @@ class User {
   int fidelityPoints;
   String fidelityGrade;
   String? qrCode;
-  String inscriptionDate;
+  String? inscriptionDate;
 
 
   User({
@@ -19,7 +19,7 @@ class User {
     required this.userType,
     required this.fidelityPoints,
     required this.fidelityGrade,
-    required this.inscriptionDate,
+    this.inscriptionDate,
     this.profilePictureUrl,
     this.qrCode,
   });

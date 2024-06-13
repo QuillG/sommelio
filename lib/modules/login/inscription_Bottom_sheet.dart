@@ -25,7 +25,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   String? errorMessage;
   String userType = 'particulier';
 
-
   Future<void> _register() async {
     if (nameController.text.isNotEmpty &&
         surnameController.text.isNotEmpty &&
@@ -57,17 +56,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
           passwordController.text,
           'particulier',
         );
-  
-
-        
 
         Navigator.pop(context); // Masquer l'indicateur de chargement
 
         if (isUserRegistered != null) {
           // Naviguer vers la page d'accueil si l'inscription est réussie
-          Navigator.pushNamed(
+          Navigator.pushReplacementNamed(
             context,
-            '/home',
+            '/basePage',
             arguments: isUserRegistered,
           );
         } else {
