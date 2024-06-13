@@ -22,7 +22,7 @@ class AuthenticationService {
       if (response.statusCode == 200) {
         // Authentification réussie
         var jsonResponse = convert.jsonDecode(response.body);
-        return User.fromJson(jsonResponse);
+        return User.fromJson1(jsonResponse);
       } else {
         // Échec de l'authentification
         return Future.error('Échec de l\'authentification');
@@ -53,7 +53,7 @@ class AuthenticationService {
       if (response.statusCode == 200) {
         // Authentification réussie
         var jsonResponse = convert.jsonDecode(response.body);
-        return User.fromJson(jsonResponse);
+        return User.fromJson2(jsonResponse);
       } else {
         // Échec de l'authentification
         return Future.error('Échec de l\'authentification');

@@ -58,7 +58,7 @@ class DatabaseHelper {
   Future<User?> getUser() async {
     Database db = await instance.database;
     var users = await db.query(table);
-    return users.isNotEmpty ? User.fromJson(users.first) : null;
+    return users.isNotEmpty ? User.fromJson1(users.first) : null;
   }
 
   //Delete all users

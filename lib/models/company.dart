@@ -1,5 +1,4 @@
 import 'package:sommelio/models/Address.dart';
-import 'package:sommelio/models/professional.dart';
 import 'package:sommelio/models/user.dart';
 
 class Company {
@@ -21,7 +20,7 @@ final String pictureUrl;
     return Company(
       name: json['name'],
       pictureUrl: json['pictureUrl'],
-      user: User.fromJson(json['user']),
+      user: User.fromJson1(json['user']),
       address: Address.fromJson(json['address']),
       
     );

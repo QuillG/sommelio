@@ -24,7 +24,7 @@ class User {
     this.qrCode,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson1(Map<String, dynamic> json) {
     return User(
       id: json['user']['id'],
       name: json['user']['name'],
@@ -36,6 +36,20 @@ class User {
       fidelityGrade: json['user']['fidelityGrade'],
       inscriptionDate: json['user']['inscriptionDate'],
       qrCode: json['user']['qrCode'],
+    );
+  }
+  factory User.fromJson2(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      name: json['name'],
+      surname: json['surname'],
+      email: json['email'],
+      profilePictureUrl: json['profilePictureUrl'],
+      userType: json['userType'],
+      fidelityPoints: json['fidelityPoints'],
+      fidelityGrade: json['fidelityGrade'],
+      inscriptionDate: json['inscriptionDate'],
+      qrCode: json['qrCode'],
     );
   }
 
