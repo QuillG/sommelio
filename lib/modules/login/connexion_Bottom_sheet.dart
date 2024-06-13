@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/home/home_pages.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
 
 class CustomLoginWidget extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/Wines.dart';
 import 'package:sommelio/models/delicacies.dart';

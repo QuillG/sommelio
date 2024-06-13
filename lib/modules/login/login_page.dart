@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/config/app_icons.dart';
 import 'package:sommelio/models/user.dart';
 import 'package:sommelio/modules/login/login_page_controller.dart';
-import 'package:sommelio/modules/login/connexion_BottomSheet.dart';
-import 'package:sommelio/modules/login/inscription_BottomSheet%20copy.dart';
+import 'package:sommelio/modules/login/connexion_Bottom_sheet.dart';
+import 'package:sommelio/modules/login/inscription_Bottom_sheet.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
