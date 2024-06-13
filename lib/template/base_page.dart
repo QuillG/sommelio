@@ -5,7 +5,7 @@ import 'package:sommelio/modules/Maps/maps_page.dart';
 import 'package:sommelio/modules/Profile/profile_page.dart';
 import 'package:sommelio/modules/fav/favorite_page.dart';
 import 'package:sommelio/modules/home/home_pages.dart';
-import 'package:sommelio/modules/met&vin/met&vin_page.dart';
+import 'package:sommelio/modules/home/met&vin_page1.dart';
 import 'package:sommelio/template/custom_header.dart';
 import 'package:sommelio/models/user.dart';
 
@@ -31,7 +31,7 @@ class _BasePageState extends State<BasePage> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       HomePage(user: widget.user),    
-      FavoritePage(),
+      FavoritePage(user: widget.user,),
       MapPage(),
       ProfilePage(user: widget.user),
     ];

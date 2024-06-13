@@ -1,4 +1,5 @@
 
+import 'package:sommelio/models/Wines.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/resumeevent.dart';
 import 'package:sommelio/models/user.dart';
@@ -36,4 +37,26 @@ class Repository {
   Future<List<ResumeEvent>> getEvents() async {
     return eventService.getAllResumeEvents() ;
   }
+
+  Future<List<Wines>> getWinesDelicacies(int mainId) async {
+    return wineSearchService.getWinesDelicacies(mainId);
+  }
+
+  Future<List<Wines>> getWinesByString(String search) async {
+    return wineSearchService.getWinesByString(search);
+  }
+
+  Future<List<Wines>> getAllWines() async {
+    return wineSearchService.getAllWines();
+  }
+
+  Future<bool> addWineToFavorite(int userId, int wineId) async {
+    return wineSearchService.AddWineToFavorite(userId, wineId);
+  }
+
+  Future<List<Wines>> getFavoriteWine(int userId) async {
+    return wineSearchService.getFavoriteWine(userId);
+  }
+
+
 }

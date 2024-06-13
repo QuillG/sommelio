@@ -5,44 +5,23 @@ import 'package:sommelio/modules/login/login_page.dart';
 import 'package:sommelio/modules/openingPage/open_page.dart';
 import 'package:sommelio/template/base_page.dart';
 
-
 void main() {
   runApp(const MyApp());
-  
-  
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
-
   @override
   Widget build(BuildContext context) {
-    
-
-    // make a dev config for redirect directly on profile page
-    // final User user = User(
-    //   name: 'John',
-    //   email: 'JohnDoe@gmail.com',
-    //   surname: 'Doe',
-    //   profilePictureUrl: 'assets/Photos/PhotoProfil.webp',
-    //   fidelityGrade: 'Newbie',
-    //   fidelityPoints: 0,
-    //   userType: 'Particular',
-    //   inscriptionDate: DateTime.now().toString(),
-    // );
-
-    // return MaterialApp(
-    //   title: 'Navigation',
-    //   initialRoute: '/basePage',
-    //   routes: {
-    //     '/basePage': (context) => BasePage(user : user),
-    //   },
-    // );
-
     return MaterialApp(
       title: 'Navigation',
+      theme: ThemeData(
+        // Définir la couleur de fond ici
+        scaffoldBackgroundColor: Colors.white, // Fond blanc #FFFFFF
+        // Si nécessaire, définissez d'autres propriétés de thème ici
+        // Par exemple, la couleur du texte, la police, etc.
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => OpenPage(),
@@ -61,7 +40,7 @@ class MyApp extends StatelessWidget {
           final user = settings.arguments as User;
           return MaterialPageRoute(
             builder: (context) {
-              return BasePage(user : user);
+              return BasePage(user: user);
             },
           );
         }

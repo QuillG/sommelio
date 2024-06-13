@@ -4,14 +4,15 @@ import 'package:sommelio/config/app-colors.dart';
 import 'package:sommelio/config/app_fonts.dart';
 import 'package:sommelio/models/delicacies.dart';
 import 'package:sommelio/models/user.dart';
-import 'package:sommelio/modules/met&vin/met&vin_controller.dart';
+import 'package:sommelio/modules/home/met&vin_controller.dart';
 import 'package:sommelio/widget/btn.dart';
 
 class MetVinPage extends StatefulWidget {
   final User user;
   final Delicacies mainDelicacy;
+    final Function(Delicacies)? btnDelicaciesClicked;
 
-  const MetVinPage({required this.user, required this.mainDelicacy, Key? key})
+  const MetVinPage({required this.user, required this.mainDelicacy, required this.btnDelicaciesClicked, Key? key})
       : super(key: key);
 
   @override
@@ -39,7 +40,7 @@ class _MetVinState extends State<MetVinPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Accord,',
+                    'Accords,',
                     style: TextStyle(
                       fontFamily: AppFonts.avenirRegular,
                       color: AppColors.black,
@@ -86,6 +87,8 @@ class _MetVinState extends State<MetVinPage> {
                             width: 150,
                             height: 200,
                             onPressed: () {
+                              print('Delicacy ${delicacy.name} clicked');
+                              widget.btnDelicaciesClicked?.call(delicacy);
                             },
                           ))
                       .toList(),

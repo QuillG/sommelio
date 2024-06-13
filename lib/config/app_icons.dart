@@ -26,6 +26,10 @@ class AppIcons {
   static const String bottomBarMapActive = 'assets/navbarIcones/PLEIN/Maps.png';
   static const String eventIcone = 'assets/other/eventWine.png';
   static const String profileIcone = 'assets/other/utilisateur.png';
+  static const String tchinGreen = 'assets/other/NOIR/TchinGreen.png';
+  static const String tchin = 'assets/other/NOIR/Tchin.png';
+  static const String blingPink = 'assets/other/NOIR/BlingPink.png';
+  static const String bling = 'assets/other/NOIR/Bling.png';
   
 
 }
